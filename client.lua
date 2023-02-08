@@ -42,7 +42,17 @@ end
 
 function ParseFile(fileName)
     local lines = {}
-    
+
+    for l in io.lines(fileName) do
+        table.insert(lines, l)
+    end
+    local i = 1
+    while lines[i] ~= nil do
+        if (#lines[i] % 2) == 0 then
+            print(lines[i])
+        end
+        i = i + 1
+    end
 end
 
-print(Calculator("4", '5', 'a'))
+ParseFile("5.txt")
