@@ -41,7 +41,8 @@ function Calculator(...)
 end
 
 function ParseFile(fileName)
-
+    local lines = {}
+    
 end
 
 print(Calculator("4", '5', 'a'))
