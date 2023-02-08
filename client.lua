@@ -55,4 +55,53 @@ function ParseFile(fileName)
     end
 end
 
-ParseFile("5.txt")
+function Pet(name, status)
+    local pet = {
+        name = name,
+        status = status,
+        check = function(animal)
+            print(tostring(animal.name) .. " is " .. tostring(animal.status))
+        end,
+        feed = function(animal)
+            print(tostring(animal.name) .. " has been fed")
+        end
+    }
+
+    return pet
+end
+
+function Dog(name, status, breed)
+    local animal = Pet(name or "Meimei", status)
+
+    animal.breed = "Australian Shepherd"
+    animal.loyalty = 0
+    animal.feed = function(animal)
+        animal.loyalty = animal.loyalty + 5
+        print(tostring(animal.name) .. " has been fed")
+    end
+    animal.isLoyal = function(animal)
+        if animal.loyalty >= 10 then
+            print(tostring(animal.name) .. " is loyal")
+        else
+            print(tostring(animal.name) .. " is NOT loyal")
+        end
+    end
+    animal.bark = function(animal)
+        print("Woof Woof")
+    end
+    return animal
+end
+
+local t1 = {x = 5, y = 10}
+local t2 = {x = 15, y = 15}
+
+mt = {}
+
+mt.__add = function(tabA, tabB)
+    return {x = tabA.x + tabB.x, y = tabA.y + tabB.y}
+end
+
+setmetatable(t1, mt)
+
+local t3 = t1 + t2
+print(t3.y)
